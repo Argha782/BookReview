@@ -97,6 +97,7 @@ const userBookSlice = createSlice({
 		});
 		builder.addCase(fetchFeaturedBooks.rejected, (state, action) => {
 			state.isLoading = false;
+			state.featuredBooks = [];
 			state.error = action.payload as string;
 		});
 	},
