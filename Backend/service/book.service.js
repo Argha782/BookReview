@@ -1,11 +1,19 @@
-import { BookRepository } from "../repository/book.repo.js";
+import { bookRepository } from "../repository/book.repo.js";
 
-const bookRepo = new BookRepository();
-
-export class BookService {
+class BookService {
 	getBooks = async ({ page = 1, limit = 10, search, filter, sortby }) => {
-		const books = await bookRepo.getBooks(page, limit, search, filter, sortby);
-		const totalBooks = await bookRepo.getTotalBooks(search, filter, sortby);
+		const books = await bookRepository.getBooks(
+			page,
+			limit,
+			search,
+			filter,
+			sortby,
+		);
+		const totalBooks = await bookRepository.getTotalBooks(
+			search,
+			filter,
+			sortby,
+		);
 		const totalPages = Math.ceil(totalBooks / limit);
 		const previousPage = page > 1 ? page - 1 : null;
 		const nextPage = page < totalPages ? page + 1 : null;
@@ -20,12 +28,12 @@ export class BookService {
 	};
 
 	getBookById = async (id) => {
-		const book = await bookRepo.getBookById(id);
+		const book = await bookRepository.getBookById(id);
 		return book;
 	};
 
 	getFeaturedBooks = async () => {
-		const books = await bookRepo.getFeaturedBooks();
+		const books = await bookRepository.getFeaturedBooks();
 		return {
 			books,
 		};
@@ -39,7 +47,7 @@ export class BookService {
 		featured = false,
 		genre,
 	}) => {
-		const book = await bookRepo.createBook({
+		const book = await bookRepository.createBook({
 			title,
 			author,
 			coverImage,
@@ -54,7 +62,7 @@ export class BookService {
 		id,
 		{ title, author, coverImage, description, featured },
 	) => {
-		const book = await bookRepo.updateBook(id, {
+		const book = await bookRepository.updateBook(id, {
 			title,
 			author,
 			coverImage,
@@ -65,8 +73,9 @@ export class BookService {
 	};
 
 	deleteBook = async (id) => {
-		const book = await bookRepo.deleteBook(id);
+		const book = await bookRepository.deleteBook(id);
 		return book;
 	};
-
 }
+
+export const bookService = new BookService();
