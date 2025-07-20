@@ -1,12 +1,13 @@
-import { BookRepository } from "../repository/book.repo.js";
-import { ReviewRepository } from "../repository/review.repo.js";
+import { reviewRepository } from "../repository/review.repo.js";
 
-const reviewRepo = new ReviewRepository();
-const bookRepo = new BookRepository();
+const AI_MODEL = process.env.AI_MODEL;
+if (!AI_MODEL) {
+	throw new Error("AI_MODEL environment variable is required");
+}
 
-export class ReviewService {
+class ReviewService {
 	getReviews = async (bookId) => {
-		const reviews = await reviewRepo.getReviews(bookId);
+		const reviews = await reviewRepository.getReviews(bookId);
 		return reviews;
 	};
 
@@ -16,7 +17,7 @@ export class ReviewService {
 			throw new Error("Book not found");
 		}
 
-		const result = await reviewRepo.addReview({
+		const result = await reviewRepository.addReview({
 			bookId,
 			userId,
 			comment,
@@ -36,7 +37,7 @@ export class ReviewService {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						model: "nvidia/llama-3.1-nemotron-nano-8b-v1:free",
+						model: AI_MODEL,
 						messages: [
 							{
 								role: "user",
@@ -76,3 +77,5 @@ export class ReviewService {
 		}
 	};
 }
+
+export const reviewService = new ReviewService();

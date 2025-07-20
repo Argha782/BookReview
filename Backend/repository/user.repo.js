@@ -1,8 +1,6 @@
 import prisma from "../database/dbConnect.js";
 
-export class UserRepository {
-	constructor() {}
-
+class UserRepository {
 	findUserByEmail = async (email) => {
 		const user = await prisma.user.findUnique({
 			where: {
@@ -42,3 +40,5 @@ export class UserRepository {
 		return user;
 	};
 }
+
+export const userRepository = new UserRepository();
