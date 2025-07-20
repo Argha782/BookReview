@@ -1,8 +1,6 @@
-import { ReviewService } from "../service/review.service.js";
+import { reviewService } from "../service/review.service.js";
 
-const reviewService = new ReviewService();
-
-export class ReviewController {
+class ReviewController {
 	getBookReviews = async (req, res) => {
 		try {
 			const { bookId } = req.query;
@@ -84,3 +82,5 @@ export class ReviewController {
 		}
 	};
 }
+
+export const reviewController = new ReviewController();

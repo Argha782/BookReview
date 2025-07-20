@@ -1,13 +1,11 @@
-import { UserRepository } from "../repository/user.repo.js";
+import { userRepository } from "../repository/user.repo.js";
 
-const userRepo = new UserRepository();
-
-export class UserService {
+class UserService {
 	constructor() {}
 
 	createUser = async (data) => {
 		const { name, email, password } = data;
-		const user = await userRepo.createNewUser({ name, email, password });
+		const user = await userRepository.createNewUser({ name, email, password });
 		return {
 			id: user.id,
 			name: user.name,
@@ -16,7 +14,8 @@ export class UserService {
 	};
 
 	findUserByEmail = async (email) => {
-		const user = await userRepo.findUserByEmail(email);
+		const user = await userRepository.createNewUser({ name, email, password });
+		findUserByEmail(email);
 		return {
 			id: user.id,
 			name: user.name,
@@ -25,7 +24,8 @@ export class UserService {
 	};
 
 	findUserById = async (id) => {
-		const user = await userRepo.findUserById(id);
+		const user = await userRepository.createNewUser({ name, email, password });
+		findUserById(id);
 
 		if (!user) {
 			throw new Error("User not found");
@@ -39,11 +39,17 @@ export class UserService {
 	};
 
 	updateUser = async (id, data) => {
-		const user = await userRepo.findUserById(id);
+		const user = await userRepository.createNewUser({ name, email, password });
+		findUserById(id);
 		if (!user) {
 			throw new Error("User not found");
 		}
-		const updatedUser = await userRepo.updateUser(id, data);
+		const updatedUser = await userRepository.createNewUser({
+			name,
+			email,
+			password,
+		});
+		updateUser(id, data);
 		if (!updatedUser) {
 			throw new Error("Failed to update user");
 		}
@@ -54,3 +60,5 @@ export class UserService {
 		};
 	};
 }
+
+export const userService = new UserService();

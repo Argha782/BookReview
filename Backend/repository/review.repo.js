@@ -1,9 +1,7 @@
 import prisma from "../database//dbConnect.js";
-import { BookRepository } from "./book.repo.js";
+import { bookRepository } from "./book.repo.js";
 
-const bookingRepo = new BookRepository();
-
-export class ReviewRepository {
+class ReviewRepository {
 	getReviews = async (bookId) => {
 		const reviews = await prisma.review.findMany({
 			where: {
@@ -34,8 +32,10 @@ export class ReviewRepository {
 					rating,
 				},
 			});
-			await bookingRepo.updateBookRating(bookId, rating, prisma);
+			await bookRepository.updateBookRating(bookId, rating, prisma);
 			return review;
 		});
 	};
 }
+
+export const reviewRepository = new ReviewRepository();
