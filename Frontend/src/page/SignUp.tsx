@@ -3,7 +3,14 @@ import { api } from "../api";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { authActions } from "../redux/slices/authSlice";
 import React, { useEffect } from "react";
+import { Eye, EyeOff, User, Mail, Lock } from "lucide-react";
 import Loader from "../components/Loader";
+
+interface ErrorState {
+	email: string;
+	password: string;
+	name: string;
+}
 
 export default function SignUp() {
 	const [userInfo, setUserInfo] = React.useState({
@@ -12,25 +19,26 @@ export default function SignUp() {
 		name: "",
 	});
 	const { isAuthenticated, user } = useAppSelector((state) => state.auth);
-	const [error, setError] = React.useState({
+	const [error, setError] = React.useState<ErrorState>({
 		email: "",
 		password: "",
 		name: "",
 	});
 	const [loading, setLoading] = React.useState(false);
+	const [showPassword, setShowPassword] = React.useState(false);
 
 	const router = useNavigate();
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (isAuthenticated) {
+		if (isAuthenticated && user) {
 			if (user.role === "ADMIN") {
 				router("/admin");
 			} else if (user.role === "USER") {
 				router("/");
 			}
 		}
-	}, [isAuthenticated, user]);
+	}, [isAuthenticated, user, router]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -38,13 +46,27 @@ export default function SignUp() {
 			...prevState,
 			[name]: value,
 		}));
+		
+		// Clear error when user starts typing
+		if (error[name as keyof ErrorState]) {
+			setError((prevError) => ({
+				...prevError,
+				[name]: "",
+			}));
+		}
 	};
 
 	const validateForm = () => {
-		const currentError: any = {};
+		const currentError: ErrorState = {
+			email: "",
+			password: "",
+			name: "",
+		};
+		
 		if (userInfo.email === "") {
 			currentError.email = "Email is required";
 		}
+		
 		if (userInfo.password === "") {
 			currentError.password = "Password is required";
 		} else {
@@ -62,86 +84,190 @@ export default function SignUp() {
 		}
 
 		setError(currentError);
-		return Object.keys(currentError).length === 0;
+		return Object.values(currentError).every(err => err === "");
 	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		
+		if (!validateForm()) {
+			return;
+		}
+		
+		setLoading(true);
+		
 		try {
-			e.preventDefault();
-			setLoading(true);
-			if (!validateForm()) {
-				return;
-			}
 			console.log(userInfo);
-
 			const response = await api.post("/api/v1/auth/sign-up", userInfo);
 			dispatch(authActions.login(response.data.user));
 			router("/");
-		} catch (error) {
-			// TODO add tostify error message
+		} catch (error: any) {
+			console.error("Sign up error:", error);
+			// Handle specific error cases
+			if (error.response?.data?.message) {
+				// If backend returns field-specific errors
+				setError({
+					email: error.response.data.message.includes("email") ? error.response.data.message : "",
+					password: error.response.data.message.includes("password") ? error.response.data.message : "",
+					name: error.response.data.message.includes("name") ? error.response.data.message : "",
+				});
+			} else {
+				// Generic error handling
+				setError({
+					email: "",
+					password: "",
+					name: "Something went wrong. Please try again.",
+				});
+			}
 		} finally {
 			setLoading(false);
 		}
 	};
 
-	return (
-		<div className="flex flex-col items-center justify-center h-[80dvh] w-full ">
-			<div className="shadow-lg p-5 rounded-lg">
-				<h1 className="text-4xl text-center font-bold mb-4">Sign Up</h1>
-				<div>
-					<form
-						className="flex flex-col justify-center items-center space-y-3  w-[350px]"
-						onSubmit={handleSubmit}
-					>
-						<input
-							type="text"
-							placeholder="Name"
-							name="name"
-							className="border border-gray-300 rounded p-2 w-full outline-none"
-							value={userInfo.name}
-							onChange={handleInputChange}
-							required
-						/>
-						{error.name && <p className="text-red-500 text-sm">{error.name}</p>}
-						<input
-							type="email"
-							placeholder="Email"
-							name="email"
-							className="border border-gray-300 rounded p-2 w-full outline-none"
-							value={userInfo.email}
-							onChange={handleInputChange}
-							required
-						/>
-						{error.email && (
-							<p className="text-red-500 text-sm">{error.email}</p>
-						)}
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							className="border border-gray-300 rounded p-2 w-full outline-none"
-							value={userInfo.password}
-							onChange={handleInputChange}
-							required
-						/>
-						{error.password && (
-							<p className="text-red-500 text-sm w-full">{error.password}</p>
-						)}
+	const togglePasswordVisibility = () => {
+		setShowPassword(!showPassword);
+	};
 
+	return (
+		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4 py-8">
+			<div className="w-full max-w-md">
+				<div className="bg-white shadow-2xl rounded-2xl p-8 space-y-8">
+					{/* Header */}
+					<div className="text-center space-y-2">
+						<h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
+						<p className="text-gray-600">Join us and get started today</p>
+					</div>
+
+					{/* Form */}
+					<form onSubmit={handleSubmit} className="space-y-6">
+						{/* Name Field */}
+						<div className="space-y-2">
+							<label htmlFor="name" className="block text-sm font-semibold text-gray-700">
+								Full Name
+							</label>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<User className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="name"
+									type="text"
+									placeholder="Enter your full name"
+									name="name"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+									value={userInfo.name}
+									onChange={handleInputChange}
+									required
+									disabled={loading}
+								/>
+							</div>
+							{error.name && (
+								<p className="text-red-500 text-sm font-medium flex items-center gap-1">
+									{error.name}
+								</p>
+							)}
+						</div>
+
+						{/* Email Field */}
+						<div className="space-y-2">
+							<label htmlFor="email" className="block text-sm font-semibold text-gray-700">
+								Email Address
+							</label>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Mail className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="email"
+									type="email"
+									placeholder="Enter your email"
+									name="email"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+									value={userInfo.email}
+									onChange={handleInputChange}
+									required
+									disabled={loading}
+								/>
+							</div>
+							{error.email && (
+								<p className="text-red-500 text-sm font-medium flex items-center gap-1">
+									{error.email}
+								</p>
+							)}
+						</div>
+
+						{/* Password Field */}
+						<div className="space-y-2">
+							<label htmlFor="password" className="block text-sm font-semibold text-gray-700">
+								Password
+							</label>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Lock className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="password"
+									type={showPassword ? "text" : "password"}
+									placeholder="Create a strong password"
+									name="password"
+									className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+									value={userInfo.password}
+									onChange={handleInputChange}
+									required
+									disabled={loading}
+								/>
+								<button
+									type="button"
+									onClick={togglePasswordVisibility}
+									disabled={loading}
+									className="absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-100 rounded-r-lg transition-colors duration-200 min-w-[44px] min-h-[44px] justify-center disabled:cursor-not-allowed disabled:hover:bg-transparent"
+									aria-label={showPassword ? "Hide password" : "Show password"}
+								>
+									{showPassword ? (
+										<EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+									) : (
+										<Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+									)}
+								</button>
+							</div>
+							{error.password && (
+								<p className="text-red-500 text-sm font-medium leading-relaxed">
+									{error.password}
+								</p>
+							)}
+						</div>
+
+						{/* Submit Button */}
 						<button
-							className="bg-black/80  hover:bg-black/100 text-white rounded p-2 w-full transition-all duration-400 cursor-pointer"
 							type="submit"
+							disabled={loading}
+							className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
 						>
-							{loading && <Loader />}
-							{!loading && "Sign Up"}
+							{loading ? (
+								<>
+									<div className="w-5 h-5">
+										<Loader size={20} />
+									</div>
+									<span>Creating Account...</span>
+								</>
+							) : (
+								"Create Account"
+							)}
 						</button>
-						<p className="text-sm text-gray-500">
+					</form>
+
+					{/* Footer */}
+					<div className="text-center pt-4 border-t border-gray-100">
+						<p className="text-gray-600">
 							Already have an account?{" "}
-							<Link to="/sign-in" className="text-black underline">
+							<Link 
+								to="/sign-in" 
+								className="font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-200"
+							>
 								Sign In
 							</Link>
 						</p>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
