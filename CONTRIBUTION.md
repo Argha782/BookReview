@@ -36,7 +36,7 @@ cd backend
 npm install
 ```
 
-3. Rename `.env.example` to `.env` and fill in:
+3.create a new `.env` file and copy the contents of `.env.example` into it:
 
 ```
 FRONTEND_URL=http://localhost:5173
@@ -71,7 +71,7 @@ cd ../frontend
 npm install
 ```
 
-3. Rename `.env.example` to `.env` and fill in:
+3.create a new `.env` file and copy the contents of `.env.example` into it:
 
 ```
 VITE_API_BASE_URL=http://localhost:9999
