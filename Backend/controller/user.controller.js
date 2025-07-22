@@ -1,8 +1,6 @@
-import { UserService } from "../service/user.service.js";
+import { userService } from "../service/user.service.js";
 
-const userService = new UserService();
-
-export class UserController {
+class UserController {
 	createUser = async (req, res) => {
 		try {
 			const { name, email, password } = req.body;
@@ -72,3 +70,5 @@ export class UserController {
 		}
 	};
 }
+
+export const userController = new UserController();

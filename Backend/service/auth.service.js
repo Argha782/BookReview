@@ -1,13 +1,11 @@
-import { UserRepository } from "../repository/user.repo.js";
+import { userRepository } from "../repository/user.repo.js";
 import bcrypt from "bcrypt";
 
-const userRepo = new UserRepository();
-
-export class AuthService {
+class AuthService {
 	constructor() {}
 
 	signIn = async ({ email, password }) => {
-		const user = await userRepo.findUserByEmail(email);
+		const user = await userRepository.findUserByEmail(email);
 		if (!user) {
 			throw new Error("User not found");
 		}
@@ -27,14 +25,14 @@ export class AuthService {
 	};
 
 	signUp = async ({ name, email, password }) => {
-		const user = await userRepo.findUserByEmail(email);
+		const user = await userRepository.findUserByEmail(email);
 		if (user) {
 			throw new Error("User already exists");
 		}
 
 		const hashPassword = await bcrypt.hash(password, 10);
 
-		const newUser = await userRepo.createNewUser({
+		const newUser = await userRepository.createNewUser({
 			name,
 			email,
 			password: hashPassword,
@@ -52,3 +50,5 @@ export class AuthService {
 		};
 	};
 }
+
+export const authService = new AuthService();

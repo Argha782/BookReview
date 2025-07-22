@@ -1,8 +1,6 @@
-import { BookService } from "../service/book.service.js";
+import { bookService } from "../service/book.service.js";
 
-const bookService = new BookService();
-
-export class BookController {
+class BookController {
 	getBooks = async (req, res) => {
 		try {
 			const { page = 1, limit = 10, search = "", filter, sortby } = req.query;
@@ -119,5 +117,6 @@ export class BookController {
 			});
 		}
 	};
-
 }
+
+export const bookController = new BookController();

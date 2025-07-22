@@ -1,9 +1,7 @@
-import { AuthService } from "../service/auth.service.js";
+import { authService } from "../service/auth.service.js";
 import { generateToken } from "../utils/jwt.js";
 
-const authService = new AuthService();
-
-export class AuthController {
+class AuthController {
 	constructor() {}
 
 	signIn = async (req, res) => {
@@ -73,3 +71,5 @@ export class AuthController {
 		res.status(200).send("Sign out successful");
 	};
 }
+
+export const authController = new AuthController();

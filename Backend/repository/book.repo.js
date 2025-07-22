@@ -1,6 +1,6 @@
 import prisma from "../database/dbConnect.js";
 
-export class BookRepository {
+class BookRepository {
 	getBooks = async (page, limit, search, filter, sortby) => {
 		const filterObj = {};
 
@@ -158,3 +158,5 @@ export class BookRepository {
 		return book;
 	};
 }
+
+export const bookRepository = new BookRepository();
