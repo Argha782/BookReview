@@ -1,5 +1,3 @@
-# CONTRIBUTION.md
-
 ## 📚 Welcome to BookReview Contributor Guide
 
 Thank you for your interest in contributing to **BookReview**. Please follow these clear steps to set up the project and contribute efficiently.
