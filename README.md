@@ -9,12 +9,12 @@
 
 ## 🖼️ Preview
 
-| Home Page | Review Page | Profile Page |
-|-----------|-------------|--------------|
-| ![Home](https://github.com/user-attachments/assets/ea2a1907-e6d0-4439-b605-f74efc056d62) | ![Review](https://github.com/user-attachments/assets/f314c800-5caf-4d31-bc48-dbbf6b8019c4) | ![Profile](https://github.com/user-attachments/assets/69aa71d8-6f74-4487-a7c7-a9299cfd5126) |
-
+| Home Page | Review Page | Book Cards |
+|-----------|-------------|------------|
+| ![](./Frontend/public/screenshots/home_page.png) | ![](./Frontend/public/screenshots/review.png) | ![](./Frontend/public/screenshots/book_cards.png) |
 
 > 📌 *Screenshots reflect the latest UI after improvements.*
+
 
 ---
 
@@ -86,8 +86,8 @@ BookReview/
 ├── .gitignore              # Ignore rules
 ├── CODE_OF_CONDUCT.md      # Contributor behavior rules
 ├── CONTRIBUTION.md         # Contribution guide
-├── installation.md         # Local setup instructions
-└── README.md               # Main project documentation
+├── README.md               # Main project documentation
+└── installation.md         # Local setup instructions
 
 ```
 
