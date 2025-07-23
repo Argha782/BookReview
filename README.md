@@ -109,6 +109,19 @@ We welcome all contributions — from design tweaks to major features. Please fo
 
 ---
 
+## 📜 Code of Conduct
+
+To foster an open and welcoming environment, we follow a strict [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+We expect all participants — contributors, maintainers, and users — to act with respect and integrity in all interactions.  
+Harassment, discrimination, or any form of abusive behavior will not be tolerated.
+
+By participating in this project, you agree to uphold these standards and help maintain a positive, inclusive space for everyone.
+
+> 🙏 Please read the full [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing.
+
+---
+
 ## ✨ **AI Integration**
 
 This app uses **OpenRouter** to assist users while writing reviews. Users can click a button during review entry to generate suggestions or summaries using AI.
