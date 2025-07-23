@@ -97,7 +97,7 @@ BookReview/
 
 To get this project up and running locally, follow the steps outlined in the Installation Guide. It includes everything from cloning the repository to setting up environment variables and running the development server.
 
-🔗 [Installation Guide](./docs/installation.md)
+🔗 [Installation Guide](./installation.md)
 
 ---
 
@@ -105,7 +105,7 @@ To get this project up and running locally, follow the steps outlined in the Ins
 
 We welcome all contributions — from design tweaks to major features. Please follow our guidelines for coding style and pull requests.
 
-🔗 [Contribution Guidelines](./docs/contribution.md)
+🔗 [Contribution Guidelines](./CONTRIBUTION.md)
 
 ---
 
