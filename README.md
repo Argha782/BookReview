@@ -33,7 +33,7 @@
   Secure login/signup using **JWT (JSON Web Tokens)** to ensure protected access and sessions.
 
 - 👤 **User Profiles**  
-  Users can view, edit, and manage their reviews and profile data from a dedicated profile page.
+  Users can view, edit, and manage their profile data from a dedicated profile page.
 
 - 📚 **Book Listing**  
   Browse all books in a responsive, card-based layout with detailed information.
@@ -135,10 +135,18 @@ These features are currently being developed or planned:
 
 ## 🚀 **GirlScript Summer of Code (GSSoC) 2025**
 
-This project is part of **GSSoC '25** — welcoming all new contributors!  
-You can participate by working on open issues, UI improvements, documentation, or feature building.
+This project is proudly participating in **GirlScript Summer of Code 2025**! 🎉  
+We're excited to welcome contributors of all experience levels — whether you're a beginner or a seasoned developer.
 
-> 👏 Feel free to open an issue to get started!
+🛠️ You can contribute in many ways:
+- Fixing open issues and bugs
+- Enhancing the UI/UX design
+- Adding new features
+- Refactoring or optimizing code
+
+💬 Have an idea or question? Open an issue or join the discussion — we’re happy to help you get started.
+
+> 🙌 First-time contributors are especially welcome, feel free to explore the project!
 
 ---
 
