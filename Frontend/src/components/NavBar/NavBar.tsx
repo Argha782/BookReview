@@ -13,7 +13,7 @@ export default function NavBar() {
 	const [openMenu, setOpenMenu] = useState(false);
 
 	const linkClass = (path: string) =>
-		`px-3  m-1 text-black/60 hover:scale-110 hover:text-black/100 transition-all duration-200 ${
+		`px-3 m-1 text-black/60 hover:scale-110 hover:text-black/100 transition-all duration-200 ${
 			location.pathname === path ? "text-black/100 underline" : ""
 		}`;
 
@@ -30,9 +30,13 @@ export default function NavBar() {
 						BookReview<span className="text-[12px]">.in</span>
 					</Link>
 				</div>
+				{/* Desktop Navigation */}
 				<div className="hidden w-4/5 md:flex items-center justify-end px-3">
 					<Link to="/" className={linkClass("/")}>
 						Home
+					</Link>
+					<Link to="/about" className={linkClass("/about")}>
+						About Us
 					</Link>
 
 					{isAuthenticated && (
@@ -42,14 +46,14 @@ export default function NavBar() {
 					)}
 
 					{!isAuthenticated && (
-						<Link to="/sign-in" className={linkClass("/sign-in")}>
-							Sign In
-						</Link>
-					)}
-					{!isAuthenticated && (
-						<Link to="/sign-up" className={linkClass("/sign-up")}>
-							Sign Up
-						</Link>
+						<>
+							<Link to="/sign-in" className={linkClass("/sign-in")}>
+								Sign In
+							</Link>
+							<Link to="/sign-up" className={linkClass("/sign-up")}>
+								Sign Up
+							</Link>
+						</>
 					)}
 
 					{isAuthenticated && user.role === "ADMIN" && (
@@ -65,11 +69,10 @@ export default function NavBar() {
 								className={linkClass(`/app/profile/${user.id}`)}
 							>
 								<FaRegUserCircle
-									className=" text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
+									className="text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
 									size={25}
 								/>
 							</Link>
-
 							<RxExit
 								className="ml-2 text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
 								size={25}
@@ -78,17 +81,18 @@ export default function NavBar() {
 						</>
 					)}
 				</div>
+
+				{/* Mobile Navigation */}
 				<div className="w-4/5 md:hidden flex items-center justify-end px-3">
-					<IoMenu size={30} onClick={() => setOpenMenu(!openMenu)} />{" "}
+					<IoMenu size={30} onClick={() => setOpenMenu(!openMenu)} />
 					{openMenu && (
 						<div className="absolute top-10 right-0 w-2/4 bg-white shadow-lg rounded-md p-4 z-20">
-							<div className="w-full flex gap-2 flex-col  ">
-								<Link
-									to="/"
-									className={linkClass("/")}
-									onClick={() => setOpenMenu(false)}
-								>
+							<div className="w-full flex gap-2 flex-col">
+								<Link to="/" className={linkClass("/")} onClick={() => setOpenMenu(false)}>
 									Home
+								</Link>
+								<Link to="/about" className={linkClass("/about")} onClick={() => setOpenMenu(false)}>
+									About Us
 								</Link>
 
 								{isAuthenticated && (
@@ -102,22 +106,22 @@ export default function NavBar() {
 								)}
 
 								{!isAuthenticated && (
-									<Link
-										to="/sign-in"
-										className={linkClass("/sign-in")}
-										onClick={() => setOpenMenu(false)}
-									>
-										Sign In
-									</Link>
-								)}
-								{!isAuthenticated && (
-									<Link
-										to="/sign-up"
-										className={linkClass("/sign-up")}
-										onClick={() => setOpenMenu(false)}
-									>
-										Sign Up
-									</Link>
+									<>
+										<Link
+											to="/sign-in"
+											className={linkClass("/sign-in")}
+											onClick={() => setOpenMenu(false)}
+										>
+											Sign In
+										</Link>
+										<Link
+											to="/sign-up"
+											className={linkClass("/sign-up")}
+											onClick={() => setOpenMenu(false)}
+										>
+											Sign Up
+										</Link>
+									</>
 								)}
 
 								{isAuthenticated && user.role === "ADMIN" && (
@@ -134,22 +138,16 @@ export default function NavBar() {
 									<>
 										<Link
 											to={`/app/profile/${user.id}`}
-											className={
-												linkClass(`/app/profile/${user.id}`) +
-												" flex items-center gap-2"
-											}
+											className={linkClass(`/app/profile/${user.id}`) + " flex items-center gap-2"}
 											onClick={() => setOpenMenu(false)}
 										>
 											<FaRegUserCircle
-												className=" text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
+												className="text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
 												size={25}
 											/>
 											Profile
 										</Link>
-										<div
-											className="flex items-center gap-2 ml-2"
-											onClick={handleLogout}
-										>
+										<div className="flex items-center gap-2 ml-2" onClick={handleLogout}>
 											<RxExit
 												className="ml-2 text-black/60 hover:scale-105 hover:text-black/100 transition-all duration-200 cursor-pointer"
 												size={25}
