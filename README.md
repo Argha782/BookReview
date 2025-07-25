@@ -172,7 +172,7 @@ We're excited to welcome contributors of all experience levels — whether you'r
   <tr>
     <td align="center">
       <a href="https://github.com/github-user-name">
-        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Name" padding="10px"/>
+        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Name" margin="5px"/>
         <br /><sub><b>Name</b></sub>
       </a>
       <br />
@@ -183,7 +183,7 @@ We're excited to welcome contributors of all experience levels — whether you'r
     </td>
      <td align="center">
       <a href="https://github.com/github-user-name">
-        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Name"/>
+        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Name" margin="5px"/>
         <br /><sub><b>Name</b></sub>
       </a>
       <br />
