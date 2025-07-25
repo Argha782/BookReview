@@ -168,18 +168,12 @@ We're excited to welcome contributors of all experience levels — whether you'r
 ---
 ## ✨ Contributors
 
+Thanks goes to these wonderful people:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <table>
   <tr>
-    <td align="center">
-      <a href="https://github.com/sthuthii">
-        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Sthuthi"/>
-        <br /><sub><b>Sthuthi</b></sub>
-      </a>
-      <br />
-      <a href="#code-sthuthii" title="Code">💻</a>
-      <a href="#design-sthuthii" title="Design">🎨</a>
-      <a href="#ideas-sthuthii" title="Ideas">🤔</a>
-      <a href="#doc-sthuthii" title="Docs">📝</a>
-    </td>
+    <td align="center"><a href="https://github.com/sthuthii"><img src="https://avatars.githubusercontent.com/u/12345678?v=4" width="100px;" alt=""/><br /><sub><b>Sthuthi</b></sub></a><br /><a href="#" title="Code">💻</a></td>
   </tr>
 </table>
+<!-- ALL-CONTRIBUTORS-LIST:END -->
