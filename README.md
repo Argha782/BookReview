@@ -169,6 +169,7 @@ We're excited to welcome contributors of all experience levels — whether you'r
 ## ✨ Contributors
 [Copy this below code to add other contributors.]
 <table>
+<tbody>
   <tr>
     <td align="center">
       <a href="https://github.com/github-user-name">
@@ -196,4 +197,5 @@ We're excited to welcome contributors of all experience levels — whether you'r
       <a href="#doc-user-name" title="Docs">📝</a>
     </td>
   </tr>
+  </tbody>
 </table>
