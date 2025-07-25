@@ -166,3 +166,20 @@ We're excited to welcome contributors of all experience levels — whether you'r
 **Project by [DonaldReddy](https://github.com/DonaldReddy)** 💻
 
 ---
+## ✨ Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/sthuthii">
+        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Sthuthi"/>
+        <br /><sub><b>Sthuthi</b></sub>
+      </a>
+      <br />
+      <a href="#code-sthuthii" title="Code">💻</a>
+      <a href="#design-sthuthii" title="Design">🎨</a>
+      <a href="#ideas-sthuthii" title="Ideas">🤔</a>
+      <a href="#doc-sthuthii" title="Docs">📝</a>
+    </td>
+  </tr>
+</table>
