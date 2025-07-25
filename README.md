@@ -176,7 +176,6 @@ We're excited to welcome contributors of all experience levels — whether you'r
         <br /><sub><b>Sthuthi</b></sub>
       </a>
       <br />
-      
     </td>
   </tr>
 </table>
