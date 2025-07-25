@@ -171,11 +171,15 @@ We're excited to welcome contributors of all experience levels — whether you'r
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/sthuthii">
-        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Sthuthi"/>
-        <br /><sub><b>Sthuthi</b></sub>
+      <a href="https://github.com/github-user-name">
+        <img src="https://avatars.githubusercontent.com/u/121990379?v=4" width="100px;" alt="Name"/>
+        <br /><sub><b>Name</b></sub>
       </a>
       <br />
+      <a href="#code-user-name" title="Code">💻</a>
+      <a href="#design-user-name" title="Design">🎨</a>
+      <a href="#ideas-user-name" title="Ideas">🤔</a>
+      <a href="#doc-user-name" title="Docs">📝</a>
     </td>
   </tr>
 </table>
