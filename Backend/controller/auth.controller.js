@@ -91,40 +91,6 @@ class AuthController {
       res.status(401).json({ message: "Invalid Google token" });
     }
   };
-  // 	googleAuth = async (req, res) => {
-  // 	try {
-  // 		const { credential } = req.body;
-
-  // 		const ticket = await client.verifyIdToken({
-  // 			idToken: credential,
-  // 			audience: process.env.GOOGLE_CLIENT_ID,
-  // 		});
-  // 		const payload = ticket.getPayload();
-
-  // 		const { email, name, sub: googleId, picture } = payload;
-
-  // 		let user = await authService.findByEmail(email);
-
-  // 		if (!user) {
-  // 			user = await authService.createGoogleUser({ name, email, googleId, picture });
-  // 		}
-
-  // 		const token = generateToken(user);
-
-  // 		res.cookie("token", token, {
-  // 			httpOnly: true,
-  // 			secure: process.env.NODE_ENV === "production",
-  // 			maxAge: 1000 * 60 * 60 * 24,
-  // 			sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  // 		});
-
-  // 		res.status(200).send({ user });
-  // 	} catch (error) {
-  // 		console.error("Google Auth Error:", error.message);
-  // 		res.status(500).json({ message: error.message || "Google sign-in failed" });
-  // 	}
-  // };
-
   signOut = async (req, res) => {
     res.clearCookie("token");
 

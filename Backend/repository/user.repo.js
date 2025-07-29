@@ -18,7 +18,6 @@ class UserRepository {
     });
     return user;
   };
-
   // createNewUser = async ({ name, email, password }) => {
   // 	const user = await prisma.user.create({
   // 		data: {

@@ -130,15 +130,14 @@ export default function SignUp() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-gray-700"
-              >
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
                 Full Name
               </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <User className="h-5 w-5 text-gray-400" />
+                </span>
                 </span>
                 <input
                   id="name"
@@ -158,15 +157,14 @@ export default function SignUp() {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-gray-700"
-              >
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                 Email Address
               </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail className="h-5 w-5 text-gray-400" />
+                </span>
                 </span>
                 <input
                   id="email"
@@ -186,10 +184,7 @@ export default function SignUp() {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="password"
-                className="block text-sm font-semibold text-gray-700"
-              >
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                 Password
               </label>
               <div className="relative">
@@ -213,23 +208,14 @@ export default function SignUp() {
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={loading}
                 >
-                  {showPassword ? (
-                    <EyeOff className="w-5 h-5 text-gray-400" />
-                  ) : (
-                    <Eye className="w-5 h-5 text-gray-400" />
-                  )}
+                  {showPassword ? <EyeOff className="w-5 h-5 text-gray-400" /> : <Eye className="w-5 h-5 text-gray-400" />}
                 </button>
               </div>
-              {error.password && (
-                <p className="text-sm text-red-500">{error.password}</p>
-              )}
+              {error.password && <p className="text-sm text-red-500">{error.password}</p>}
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-semibold text-gray-700"
-              >
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700">
                 Confirm Password
               </label>
               <div className="relative">
@@ -253,16 +239,10 @@ export default function SignUp() {
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   disabled={loading}
                 >
-                  {showConfirmPassword ? (
-                    <EyeOff className="w-5 h-5 text-gray-400" />
-                  ) : (
-                    <Eye className="w-5 h-5 text-gray-400" />
-                  )}
+                  {showConfirmPassword ? <EyeOff className="w-5 h-5 text-gray-400" /> : <Eye className="w-5 h-5 text-gray-400" />}
                 </button>
               </div>
-              {error.confirmPassword && (
-                <p className="text-sm text-red-500">{error.confirmPassword}</p>
-              )}
+              {error.confirmPassword && <p className="text-sm text-red-500">{error.confirmPassword}</p>}
             </div>
 
             <div className="relative group">
@@ -285,6 +265,13 @@ export default function SignUp() {
               </div>
             </div>
           </form>
+
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-4 text-sm text-gray-400 mt-4">
+            <div className="h-px bg-gray-300 flex-1" />
+            <span>or continue with</span>
+            <div className="h-px bg-gray-300 flex-1" />
+          </div>
 
           {/* Google Sign Up/Login */}
           <div className="flex items-center justify-center mt-4">

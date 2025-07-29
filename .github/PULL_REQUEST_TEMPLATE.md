@@ -7,7 +7,7 @@ Implemented Google Sign-In authentication using @react-oauth/google in the BookR
 - [ ] Refactor
 
 ### Linked Issue
-Closes #[30]
+Closes #[35]
 
 ---
 
